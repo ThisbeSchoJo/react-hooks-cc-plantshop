@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function PlantCard({plant}) {
+function PlantCard({plant, deletePlant}) {
 
   const [displayAvailability, setDisplayAvailability] = useState(true)
 
@@ -20,6 +20,7 @@ function PlantCard({plant}) {
         <button onClick={toggleAvailability} >Out of Stock</button>
       )}
       {/* <button onClick={toggleAvailability} className="primary">{displayAvailability ? "In Stock" : "Out of Stock"}</button> */}
+      <button onClick={() => deletePlant(plant.id)} >Delete</button>
     </li>
   );
 }

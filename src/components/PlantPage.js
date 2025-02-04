@@ -27,11 +27,24 @@ function PlantPage() {
     setPlants([...plants, newPlant])
   }
 
+  const deletePlant = (id) => {
+    fetch(`http://localhost:6001/plants/${id}`, {
+      method: "DELETE",
+    })
+    .then(response => {
+      if (response.ok) {
+        setPlants(plants.filter(plant => plant.id != id))
+      } else {
+        alert("Error: unable to delete plant")
+      }
+    })
+  }
+
   return (
     <main>
       <NewPlantForm addPlant={addPlant}/>
       <Search updateSearchText={updateSearchText} searchText={searchText}/>
-      <PlantList plants={filteredPlants} />
+      <PlantList plants={filteredPlants} deletePlant={deletePlant}/>
     </main>
   );
 }
