@@ -40,11 +40,35 @@ function PlantPage() {
     })
   }
 
+  const updatePrice = (id, newPrice) => {
+    fetch(`http://localhost:6001/plants/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        price: newPrice,
+      }),
+    })
+    .then(response => {
+      if (response.ok) {
+        setPlants((prevPlants) => 
+        prevPlants.map((plant) => 
+          plant.id === id 
+        ? {...plant, price: newPrice} 
+        : plant
+      ))
+      } else {
+        alert("Error: Unable to update price.")
+      }
+    })
+  }
+
   return (
     <main>
       <NewPlantForm addPlant={addPlant}/>
       <Search updateSearchText={updateSearchText} searchText={searchText}/>
-      <PlantList plants={filteredPlants} deletePlant={deletePlant}/>
+      <PlantList plants={filteredPlants} deletePlant={deletePlant} updatePrice={updatePrice}/>
     </main>
   );
 }
