@@ -31,7 +31,6 @@ function PlantCard({plant, deletePlant, updatePrice}) {
         <button onClick={toggleAvailability} >Out of Stock</button>
       )}
       {/* <button onClick={toggleAvailability} className="primary">{displayAvailability ? "In Stock" : "Out of Stock"}</button> */}
-      <button onClick={() => deletePlant(plant.id)} >Delete</button>
       <input
         type="number"
         value={newPrice}
@@ -40,6 +39,8 @@ function PlantCard({plant, deletePlant, updatePrice}) {
         placeholder="New Price"
       />
       <button onClick={handleUpdate}>Update Price</button>
+      <br></br>
+      <button onClick={() => deletePlant(plant.id)} >Delete Plant</button>
     </li>
   );
 }
